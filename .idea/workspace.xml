@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c3675fc-1e8c-4067-beb4-b48e494a2f36" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/VoteApp/VoteApp/__init__.py" afterPath="$PROJECT_DIR$/VoteApp/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/VoteApp/VoteApp/settings.py" afterPath="$PROJECT_DIR$/VoteApp/settings.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/VoteApp/VoteApp/urls.py" afterPath="$PROJECT_DIR$/VoteApp/urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/VoteApp/VoteApp/wsgi.py" afterPath="$PROJECT_DIR$/VoteApp/wsgi.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/VoteApp/manage.py" afterPath="$PROJECT_DIR$/manage.py" />
-    </list>
+    <list default="true" id="3c3675fc-1e8c-4067-beb4-b48e494a2f36" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +65,11 @@
             <path>
               <item name="Vote-App" type="b2602c69:ProjectViewProjectNode" />
               <item name="Vote-App" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vote-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vote-App" type="462c0819:PsiDirectoryNode" />
+              <item name="vote" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Vote-App" type="b2602c69:ProjectViewProjectNode" />
