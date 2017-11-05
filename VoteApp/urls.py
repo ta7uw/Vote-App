@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from vote.views import HomePage
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^", include("vote.urls", namespace="vote"))
+    url(r"^vote", include("vote.urls", namespace="vote")),
+    url(r'^$', HomePage.as_view(), name='index')
 
 ]
