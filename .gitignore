@@ -30,3 +30,10 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
+
+### Bootstrap4 ###
+static/css/bootstrap.css
+static/css/bootstrap-grid.css
+static/cssbootstrap-reboot.css
+static/js/bootstrap.bundle.js
+static/js/bootstrap.js
