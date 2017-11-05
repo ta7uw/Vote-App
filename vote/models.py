@@ -15,7 +15,12 @@ class Finalist(models.Model):
         ordering = ["-number"]
     name = models.CharField("name",max_length=128, blank=False, null=False)
     number = models.IntegerField(default=0)
-    Votes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Finalist)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
