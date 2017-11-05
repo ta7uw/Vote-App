@@ -1,6 +1,17 @@
 from django.contrib import admin
-from .models import User, Finalist
-# Register your models here.
+from .models import User, Finalist, Question, Choice
 
+
+class ChoiceInline(admin.StackedInline):
+    model = Choice
+    extra = 5
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [ChoiceInline]
+
+
+admin.site.register(Question)
+admin.site.register(Choice)
 admin.site.register(User)
 admin.site.register(Finalist)
