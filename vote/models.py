@@ -1,13 +1,13 @@
 from django.db import models
-import uuid
+from django.conf import settings
 
 
 class User(models.Model):
-    name = models.CharField("name", max_length=128, blank=False, null=False)
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    judgeman_id = models.ForeignKey(
+        settings.AUTH_PASSWORD_VALIDATORS,
+        on_delete=models.CASCADE
+    )
 
-    def __str__(self):
-        return self.name
 
 
 class Finalist(models.Model):

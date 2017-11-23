@@ -2,8 +2,10 @@ from django.views.generic import TemplateView, DeleteView
 from .models import Finalist, Question, Choice
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 class VotePage(TemplateView):
     """
     Top Page
@@ -11,6 +13,7 @@ class VotePage(TemplateView):
     template_name = "vote/index.html"
 
 
+@login_required
 class ThanksPage(TemplateView):
     """
     Thanks Page For Vote
@@ -18,11 +21,13 @@ class ThanksPage(TemplateView):
     template_name = "vote/thanks.html"
 
 
+@login_required
 class QestionDetail(DeleteView):
     template_name = "vote/detial.html"
     model = Question
 
 
+@login_required
 def vote(request, pk):
     question = get_object_or_404(Question, pk=pk)
     try:
