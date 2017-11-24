@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, DeleteView
+from django.views.generic import TemplateView, DetailView
 from .models import Finalist, Question, Choice
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect, render
@@ -22,7 +22,7 @@ class ThanksPage(TemplateView):
 
 
 @login_required
-class QestionDetail(DeleteView):
+class QestionDetail(DetailView):
     template_name = "vote/detial.html"
     model = Question
 
