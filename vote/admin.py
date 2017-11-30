@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Judge, Finalist, Question, Choice
+from .models import Judge, Question, Choice
 
 
 class ChoiceInline(admin.StackedInline):
@@ -14,4 +14,3 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question)
 admin.site.register(Choice)
 admin.site.register(Judge)
-admin.site.register(Finalist)

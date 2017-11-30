@@ -131,4 +131,4 @@ STATICFILES_DIRS = (
 # Settings about login
 LOGIN_ERROR_URL = '/login/'
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/index/'
+LOGIN_REDIRECT_URL = '/vote/'

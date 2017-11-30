@@ -1,19 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
+import datetime
 
 
 class Judge(models.Model):
+    name = models.CharField("Judge man", max_length=128, default="")
     votes = models.IntegerField("number of votes", default=1)
-
-
-class Finalist(models.Model):
-    class Meta:
-        ordering = ["-number"]
-    name = models.CharField("name",max_length=128, blank=False, null=False)
-    number = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.name
 
 
 class Question(models.Model):
@@ -23,8 +16,14 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.choice_text

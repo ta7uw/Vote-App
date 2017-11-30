@@ -15,15 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from vote.views import VotePage
-from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^vote", include("vote.urls", namespace="vote")),
-    url(r'^$', VotePage.as_view(), name='index'),
-    url(r'^login/$', LoginView.as_view(template_name="admin/login.html"), name='login', ),
-
+    url(r"^vote/", include("vote.urls", namespace="vote")),
 
 ]

@@ -1,16 +1,25 @@
-from django.views.generic import TemplateView, DetailView
-from .models import Finalist, Question, Choice
+from django.views.generic import TemplateView, DetailView, ListView
+from .models import Question, Choice
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
-class VotePage(TemplateView):
+class VotePage(ListView):
     """
     Top Page
     """
     template_name = "vote/index.html"
+    context_object_name = 'latest_question_list'
 
+    def get_queryset(self):
+        """Return the last five published polls."""
+        return Question.objects.order_by('-pub_date')[:5]
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(VotePage, self).dispatch(*args, **kwargs)
 
 
 class ThanksPage(TemplateView):
@@ -19,10 +28,23 @@ class ThanksPage(TemplateView):
     """
     template_name = "vote/thanks.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ThanksPage, self).dispatch(*args, **kwargs)
 
-class QestionDetail(DetailView):
+
+class QuestionDetail(DetailView):
     template_name = "vote/detial.html"
     model = Question
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(QuestionDetail, self).dispatch(*args, **kwargs)
+
+
+class ResultsView(DetailView):
+    model = Question
+    template_name = 'vote/results.html'
 
 
 @login_required
