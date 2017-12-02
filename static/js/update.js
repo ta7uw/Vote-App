@@ -21,12 +21,11 @@ $(document).ready(function() {
                 success: function(r, data)
                 {
                     //初回アクセス時
-                    if(result == null)
+                    if(result === null)
                         result = data;
 
                     //PHPより取得した値が違えばメッセージを<div id="text"></div>に出す
-                    if(result != data)
-                        alert(r.choice_json)
+                    if(result !== data)
                         result = data;
                 },
                 /**
