@@ -4,9 +4,8 @@ from django.utils import timezone
 import datetime
 
 
-class Judge(models.Model):
-    name = models.CharField("Judge man", max_length=128, default="")
-    votes = models.IntegerField("number of votes", default=1)
+class Judge(AbstractUser):
+    votes = models.IntegerField("number of votes", default=1,)
 
 
 class Question(models.Model):

@@ -50,18 +50,28 @@ class ResultsView(DetailView):
 
 @login_required
 def vote(request, pk):
-    question = get_object_or_404(Question, pk=pk)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST["choice"])
-    except (KeyError, Choice.DoesNotExist):
-        return render(request, "vote/detial.html", {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
+    if request.method == "POST":
+        votes_counts = request.POST.getlist('choice')
+        print(votes_counts)
+        question = get_object_or_404(Question, pk=pk)
+
+        for i, count in enumerate(votes_counts):
+            pk = i + 1
+            count = int(count)
+            if count != 0:
+                try:
+                    selected_choice = question.choice_set.get(pk=pk)
+                except (KeyError, Choice.DoesNotExist):
+                    return render(request, "vote/detial.html", {
+                        'question': question,
+                        'error_message': "You didn't select a choice.",
+                    })
+                else:
+                    selected_choice.votes += count
+                    selected_choice.save()
         return redirect("vote:thanks")
+    else:
+        redirect("vote:index")
 
 
 def ajax_get(request, pk):
