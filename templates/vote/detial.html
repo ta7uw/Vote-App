@@ -4,7 +4,7 @@
     <h1>{{ question.question_text }}</h1>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <form action="{% url 'vote:vote' question.id %}" method="post">
+    <form id="vote-form" action="{% url 'vote:vote' question.id %}" method="post">
         {% csrf_token %}
         {% for choice in question.choice_set.all %}
             <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
@@ -12,4 +12,15 @@
         {% endfor %}
         <input type="submit" value="Vote" />
     </form>
+        <a class="button plus" href="#plus">
+        <span class="bg" id="plus"></span>
+        <span class="symbol"></span>
+        </a>
+        <a class="button minus" href="#minus">
+        <span class="bg" id="minus"></span>
+        <span class="symbol"></span>
+        </a>
+        <span class="cancel">
+        <a href="#">Clear</a>
+        </span>
 {% endblock %}

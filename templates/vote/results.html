@@ -1,15 +1,15 @@
 {% extends "vote/base.html" %}
 {% block content %}
-<h1>{{ question.question_text }}</h1>
-
 <ul>
-{% for choice in question.choice_set.all %}
-    <li>
+    <div id="result">
+      {% for choice in choice_list%}
+        <li>
     	<span> {{ choice.choice_text }} -- </span>
     	<span id={{ choice.id }}> {{ choice.votes }} </span>
     	<span> vote{{ choice.votes|pluralize }} </span>
-	</li>
-{% endfor %}
+	    </li>
+      {% endfor %}
+    <ul id="choice"></ul>
+    </div>
 </ul>
-
 {% endblock %}
