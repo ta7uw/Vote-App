@@ -56,11 +56,12 @@ class ResultsView(DetailView):
 @login_required
 def vote(request, pk):
     if request.method == "POST":
-        votes_counts = request.POST.getlist('choice')
-        print(votes_counts)
+        vote_counts = request.POST.getlist('choice')
+        print(vote_counts)
+        votes_sum = sum([int(vote_count) for vote_count in vote_counts])
         question = get_object_or_404(Question, pk=pk)
-        if votes_counts == request.user.votes:
-            for i, count in enumerate(votes_counts):
+        if votes_sum == request.user.votes:
+            for i, count in enumerate(vote_counts):
                 pk = i + 1
                 count = int(count)
                 if count != 0:
@@ -72,11 +73,18 @@ def vote(request, pk):
                             'error_message': "You didn't select a choice.",
                         })
                     else:
-                        selected_choice.votes += count
-                        selected_choice.save()
+                        if count > 0:
+                            selected_choice.votes += count
+                            selected_choice.save()
+                        else:
+                            print("Not enough")
+                            return render(request, "vote/detial.html", {
+                                'question': question,
+                                'error_message': "You didn't select a choice.",
+                            })
 
-            return redirect("vote:thanks")
-
+            print("ok")
+            return render(request, "vote/thanks.html")
         else:
             print("Not enough")
             return render(request, "vote/detial.html", {
