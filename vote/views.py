@@ -48,7 +48,6 @@ class QuestionDetail(DetailView):
         return context
 
 
-
 class ResultsView(DetailView):
     model = Question
     template_name = 'vote/results.html'
@@ -60,22 +59,31 @@ def vote(request, pk):
         votes_counts = request.POST.getlist('choice')
         print(votes_counts)
         question = get_object_or_404(Question, pk=pk)
+        if votes_counts == request.user.votes:
+            for i, count in enumerate(votes_counts):
+                pk = i + 1
+                count = int(count)
+                if count != 0:
+                    try:
+                        selected_choice = question.choice_set.get(pk=pk)
+                    except (KeyError, Choice.DoesNotExist):
+                        return render(request, "vote/detial.html", {
+                            'question': question,
+                            'error_message': "You didn't select a choice.",
+                        })
+                    else:
+                        selected_choice.votes += count
+                        selected_choice.save()
 
-        for i, count in enumerate(votes_counts):
-            pk = i + 1
-            count = int(count)
-            if count != 0:
-                try:
-                    selected_choice = question.choice_set.get(pk=pk)
-                except (KeyError, Choice.DoesNotExist):
-                    return render(request, "vote/detial.html", {
-                        'question': question,
-                        'error_message': "You didn't select a choice.",
-                    })
-                else:
-                    selected_choice.votes += count
-                    selected_choice.save()
-        return redirect("vote:thanks")
+            return redirect("vote:thanks")
+
+        else:
+            print("Not enough")
+            return render(request, "vote/detial.html", {
+                'question': question,
+                'error_message': "You didn't select a choice.",
+            })
+
     else:
         redirect("vote:index")
 
