@@ -42,6 +42,12 @@ class QuestionDetail(DetailView):
     def dispatch(self, *args, **kwargs):
         return super(QuestionDetail, self).dispatch(*args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["votes"] = self.request.user.votes
+        return context
+
+
 
 class ResultsView(DetailView):
     model = Question
