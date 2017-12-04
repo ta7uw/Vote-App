@@ -8,12 +8,16 @@ $(document).ready(function() {
             success: function(response) {
                 var data = response["choice_list"];
                 for(var choice_data in data){
-                    $('#'+ choice_data).remove();
-                    choice.append('<li id="' + choice_data + '">' + data[choice_data]["choice_text"]+':' + data[choice_data]["votes"]+'</li>');
+                    // choice data is the index number of choice
+                    var choice_text = data[choice_data]["choice_text"];
+                    var votes = data[choice_data]["votes"];
+                    var choice_id = $('#votes' + choice_data);
+                    $("#box"+ choice_data).text( choice_text + ':' + votes);
                 }
             }
         });
     };
-    var interval = 5000;
+    var interval = 500;
     setInterval(ajax_call, interval);
+    starMaker(0);
 });
