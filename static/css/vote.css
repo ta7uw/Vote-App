@@ -1,0 +1,13 @@
+.submit-button{
+    margin: 30px auto;
+    width: 20%;
+    height: 40px;
+}
+
+.choice-box{
+    width: 20%;
+    float: left;
+    border: solid 8px red;
+    box-sizing: border-box;
+    text-align: center;
+}

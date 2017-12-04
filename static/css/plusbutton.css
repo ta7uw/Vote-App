@@ -51,12 +51,20 @@
 }
 
 .plus:after {
-  content: "+";
-  font-size: 2.5em;
-  line-height: 1.1em;
+    content: "+";
+    font-size: 2.5em;
+    line-height: 1.1em;
+    position: relative;
+    top:13%;
 }
 .minus:after {
-  content: "-";
-  font-size: 2.5em;
-  line-height: 1.1em;
+    content: "-";
+    font-size: 2.5em;
+    line-height: 1.1em;
+    position: relative;
+    top:13%;
 }
+
+
+
+
