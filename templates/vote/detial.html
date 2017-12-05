@@ -1,26 +1,69 @@
 {% extends "vote/base.html" %}
 {% block content %}
-    <h1>Please select who you think NO.1</h1>
-    <h1>{{ question.question_text }}</h1>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="container text-center">
+        <h1>Please select who you think NO.1</h1>
+        <h1>{{ question.question_text }}</h1>
+        {% if error_message %}<p style="color:red"><strong>{{ error_message }}</strong></p>{% endif %}
+        <h1>The remaining <span id="remain-votes">{{ votes }}</span> votes</h1>
+         <form id="vote-form" action="{% url 'vote:vote' question.id %}" method="post">
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                <div>
+                    <div class="col-xs-12 text-center choice-block">
+                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+                        <input style="border:none" size="4" maxlength="2" name="choice" id="choice{{ forloop.counter }}" value=0 />   票
+                        <div class="button__holder">
+                            <span id="choice{{ forloop.counter }}" class="plus" onclick="btnplusClick(this);"></span>
+                            <span id="choice{{ forloop.counter }}" class="minus" onclick="btnminusClick(this);"></span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
-    <form id="vote-form" action="{% url 'vote:vote' question.id %}" method="post">
-        {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-        {% endfor %}
-        <input type="submit" value="Vote" />
-    </form>
-        <a class="button plus" href="#plus">
-        <span class="bg" id="plus"></span>
-        <span class="symbol"></span>
-        </a>
-        <a class="button minus" href="#minus">
-        <span class="bg" id="minus"></span>
-        <span class="symbol"></span>
-        </a>
-        <span class="cancel">
-        <a href="#">Clear</a>
-        </span>
+            <div class="text-center">
+                <div>
+                    <p></p>
+                </div>
+                <input class="submit-button btn-success waves-effect" type="submit" value="Vote" />
+            </div>
+         </form>
+
+    </div>
+
+    <script type="text/javascript">
+    var remain = parseInt( $('#remain-votes').text());
+    var max = remain;
+
+        function btnplusClick(this_obj){
+            var $id =  $(this_obj).attr("id");
+            var $value = $('#'+ $id).parent(".choice-block").find("input").val();
+            if (remain !== 0){
+                $value ++ ;
+                remain --;
+                $('#' + $id).parent(".choice-block").find("input").val($value);
+                $('#remain-votes').text(remain);
+
+            }
+            else {
+                alert("You can not vote any more")
+            }
+
+
+        }
+        function btnminusClick(this_obj){
+            var $id =  $(this_obj).attr("id");
+            var $value = $('#'+ $id).parent(".choice-block").find("input").val();
+            if ($value !== 0 && remain < max){
+                $value -- ;
+                remain ++ ;
+                $('#' + $id).parent(".choice-block").find("input").val($value);
+                $('#remain-votes').text(remain);
+            }
+            else{
+                alert("You can not reduce the number any more")
+            }
+
+
+        }
+    </script>
 {% endblock %}

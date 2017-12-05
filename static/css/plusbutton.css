@@ -65,6 +65,8 @@
     top:13%;
 }
 
-
+.plus:active, .minus:active {
+	top: 2px;
+}
 
 

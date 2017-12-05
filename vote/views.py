@@ -3,6 +3,7 @@ from .models import Question, Choice
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
 
@@ -52,12 +53,16 @@ class ResultsView(DetailView):
     model = Question
     template_name = 'vote/results.html'
 
+    # Staff only
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ResultsView, self).dispatch(*args, **kwargs)
+
 
 @login_required
 def vote(request, pk):
     if request.method == "POST":
         vote_counts = request.POST.getlist('choice')
-        print(vote_counts)
         votes_sum = sum([int(vote_count) for vote_count in vote_counts])
         question = get_object_or_404(Question, pk=pk)
         if votes_sum == request.user.votes:
@@ -75,6 +80,8 @@ def vote(request, pk):
                     else:
                         if count > 0:
                             selected_choice.votes += count
+                            request.user.votes -= count
+                            request.user.save()
                             selected_choice.save()
                         else:
                             print("Not enough")

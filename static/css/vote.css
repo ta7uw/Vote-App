@@ -4,10 +4,66 @@
     height: 40px;
 }
 
+.submit-button{
+	top: 4px;
+}
+
 .choice-box{
     width: 20%;
     float: left;
-    border: solid 8px red;
-    box-sizing: border-box;
     text-align: center;
 }
+#result{
+    padding: 10px 0 0;
+    line-height: 40px;
+}
+
+#timer{
+
+	font-size: 60px;
+}
+
+#sec {
+	font-size: 28px;
+}
+
+#start, #stop, #result-button{
+	position: relative;
+	width: 100px;
+	height: 40px;
+	outline: 0;
+	border: 0;
+	border-radius: 4px;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 700;
+    margin:10px;
+
+}
+
+#start {
+	background: #4897F0;
+}
+
+#start:hover {
+	background: #4087d8;
+}
+
+#stop {
+	background: #00CE9B;
+}
+
+#stop:hover {
+	background: #00b98b;
+}
+
+#start:active, #stop:active ,#result-button:active{
+	top: 4px;
+}
+
+#result-button{
+    background: darkorange;
+}
+
+
+

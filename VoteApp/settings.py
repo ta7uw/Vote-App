@@ -17,6 +17,8 @@ from .local_settings import KEY
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
+
+AUTH_USER_MODEL = 'vote.Judge'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -132,3 +134,4 @@ STATICFILES_DIRS = (
 LOGIN_ERROR_URL = '/login/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/vote/'
+

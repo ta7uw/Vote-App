@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),
     url(r"^(?P<pk>\d+)/results/api_get/$", views.ajax_get, name="ajax_get"),
     url(r"^thanks/$", views.ThanksPage.as_view(), name="thanks"),
-    url(r'^login/$', LoginView.as_view(template_name="admin/login.html"), name='login'),
+    url(r'^login/$', LoginView.as_view(template_name="vote/login.html"), name='login'),
     url(r'^logout/$', LogoutView.as_view(template_name="admin/base.html"), name='logout'),
 
 
