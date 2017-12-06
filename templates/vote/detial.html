@@ -53,7 +53,7 @@
         function btnminusClick(this_obj){
             var $id =  $(this_obj).attr("id");
             var $value = $('#'+ $id).parent(".choice-block").find("input").val();
-            if ($value !== 0 && remain < max){
+            if ($value >  0 && remain < max){
                 $value -- ;
                 remain ++ ;
                 $('#' + $id).parent(".choice-block").find("input").val($value);
