@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "vote",
+    "vote.apps.VoteConfig",
     "bootstrap3",
 ]
 
@@ -128,6 +128,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_ROOT = (
+    os.path.join(BASE_DIR, 'static_root'),
 )
 
 # Settings about login
