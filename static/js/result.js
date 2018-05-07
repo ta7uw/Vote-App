@@ -33,12 +33,6 @@ function update() {
 
                 }
                 var $split = document.getElementsByClassName("choice-box").length;
-                for(var i = 0; i < before_array.length; i++) {
-                    var margin = after_array[i] - before_array[i];
-                    starMaker(margin, i, $split);
-                }
-
-
 
             }
         });
@@ -86,16 +80,14 @@ function resultClick() {
                     // choice data is the index number of choice
                     var choice_text = data[choice_data]["choice_text"];
                     var votes = data[choice_data]["votes"];
-                    if (max <= votes){
+                    if (max <= votes) {
                         max = votes;
                         index = choice_data;
                         no1 = choice_text;
                     }
                 }
-                var $split = document.getElementsByClassName("choice-box").length;
                 console.log(no1 +" is NO.1"+ ":"+ max +"votes");
-                starMaker(50, index, $split);
-                CrownFalling(index, $split);
+
             }
 
         });
