@@ -86,8 +86,6 @@ function resultClick() {
                         no1 = choice_text;
                     }
                 }
-                console.log(no1 +" is NO.1"+ ":"+ max +"votes");
-
             }
 
         });

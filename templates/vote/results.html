@@ -13,7 +13,6 @@
             <input type="button" id="stop" value="Stop" onclick="btnstopClick();">
         </div>
     </div>
-
         {% for choice in question.choice_set.all %}
             <div class="choice-box" id="box{{ forloop.counter0 }}">
                 <h1 id="choice{{ forloop.counter0 }}">{{ choice.choice_text }}</h1>
@@ -21,24 +20,7 @@
             </div>
         {% endfor %}
         <ul id="choice"></ul>
-        <div class="container">
-          <div class="king" style="display: none">
-            <div class="crown">
-              <div class="crown top-left"></div>
-              <div class="crown top-middle"></div>
-              <div class="crown top-right"></div>
-              <div class="crown back-left"></div>
-              <div class="crown back-right"></div>
-              <div class="crown middle"></div>
-              <div class="crown bottom"></div>
-            </div>
-            <div class="jewel">
-              <div class="jewel red left"></div>
-              <div class="jewel blue"></div>
-              <div class="jewel red right"></div>
-            </div>
-          </div>
-        </div>
+
     </div>
 
 <!-- Custom JS -->
