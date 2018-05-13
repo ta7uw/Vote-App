@@ -17,8 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 
+app_name = "vote"
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^", include("vote.urls", namespace="vote")),
+    url(r"^", include("vote.urls")),
 
 ]
