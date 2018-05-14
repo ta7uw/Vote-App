@@ -36,6 +36,9 @@ class ThanksPage(TemplateView):
 
 
 class QuestionDetail(DetailView):
+    """
+
+    """
     template_name = "vote/detial.html"
     model = Question
 
@@ -50,6 +53,9 @@ class QuestionDetail(DetailView):
 
 
 class ResultsView(DetailView):
+    """
+    Display the result of voting
+    """
     model = Question
     template_name = 'vote/results.html'
 
@@ -61,6 +67,9 @@ class ResultsView(DetailView):
 
 @login_required
 def vote(request, pk):
+    """
+    This function is for　each user to vote.
+    """
     if request.method == "POST":
         vote_counts = request.POST.getlist('choice')
         votes_sum = sum([int(vote_count) for vote_count in vote_counts])
@@ -104,6 +113,9 @@ def vote(request, pk):
 
 
 def ajax_get(request, pk):
+    """
+    This fuction is for getting result of voting now by ajax.
+    """
     if request.method == "GET":
         question = get_object_or_404(Question, pk=pk)
         choices = question.choice_set.all()
