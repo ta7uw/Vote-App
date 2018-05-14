@@ -1,7 +1,7 @@
 {% extends "vote/base.html" %}
 {% block content %}
     <div class="container text-center">
-        <h1>Please select who you think NO.1</h1>
+        <h1>Please choose what you think is the best</h1>
         <h1>{{ question.question_text }}</h1>
         {% if error_message %}<p style="color:red"><strong>{{ error_message }}</strong></p>{% endif %}
         <h1>The remaining <span id="remain-votes">{{ votes }}</span> votes</h1>
