@@ -1,50 +1,51 @@
-function getRumRgba(){
-        var clr = 'rgba(';
-        for(var i=0; i < 3; i++){
+const getRumRgba = function(){
+        let clr = 'rgba(';
+        for(let i=0; i < 3; i++){
             clr = clr + Math.floor( Math.random()*255) + ',';
         }
         clr = clr + Math.floor( Math.random()*10)/10 + ')';
         return clr;
-    }
+    };
+
 $(function(){
-    var size = document.getElementsByClassName("choice-box").length;
-    for (var count=0; count < size; count++){
+    let size = document.getElementsByClassName("choice-box").length;
+    for (let  count=0; count < size; count++){
         $("#box" + count).css({'background-color':getRumRgba()});
     }
 });
 
-function update() {
+const update = function() {
         $.ajax({
             type: 'GET',
             url: "api_get",
             dataType: 'json',
             success: function(response) {
-                var data = response["choice_list"];
-                var before_array = [];
-                var after_array = [];
-                for(var choice_data in data){
+                let data = response["choice_list"];
+                let before_array = [];
+                let after_array = [];
+                for(let choice_data in data){
                     // choice data is the index number of choice
-                    var choice_text = data[choice_data]["choice_text"];
-                    var votes = data[choice_data]["votes"];
-                    var choice_id = $('#votes' + choice_data);
+                    let choice_text = data[choice_data]["choice_text"];
+                    let votes = data[choice_data]["votes"];
+                    let choice_id = $('#votes' + choice_data);
                     before_array.push(parseInt(choice_id.text()));
                     after_array.push(votes);
                     $("#box"+ choice_data).html('<h1 id="choice'+ choice_data+'">'+ choice_text + '</h1>\<h2 id="votes'+ choice_data+'">'+  votes + '<h2>');
 
                 }
-                var $split = document.getElementsByClassName("choice-box").length;
+                let $split = document.getElementsByClassName("choice-box").length;
 
             }
         });
 
-}
+};
 
-var interval;
-var updating;
+let interval;
+let updating;
 
-function btnstratClick(){
-    var timer = $('#timer').text();
-    var update_interval = 500;
+const btnstratClick = function(){
+    let timer = $('#timer').text();
+    let  update_interval = 500;
     updating = setInterval(update, update_interval);
 
 
@@ -60,26 +61,26 @@ function btnstratClick(){
 
     }, 1000);
 
-}
-function btnstopClick(){
+};
+const btnstopClick = function(){
         clearInterval(interval);
         clearInterval(updating);
-}
+};
 
-function resultClick() {
+const resultClick = function() {
         $.ajax({
             type: 'GET',
             url: "api_get",
             dataType: 'json',
             success: function(response) {
-                var data = response["choice_list"];
-                var max = 0;
-                var no1 = "";
-                var index = 0;
+                let data = response["choice_list"];
+                let  max = 0;
+                let  no1 = "";
+                let  index = 0;
                 for (var choice_data in data) {
                     // choice data is the index number of choice
-                    var choice_text = data[choice_data]["choice_text"];
-                    var votes = data[choice_data]["votes"];
+                    let  choice_text = data[choice_data]["choice_text"];
+                    let votes = data[choice_data]["votes"];
                     if (max <= votes) {
                         max = votes;
                         index = choice_data;
@@ -90,5 +91,5 @@ function resultClick() {
 
         });
 
-}
+};
 
