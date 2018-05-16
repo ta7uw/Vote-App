@@ -31,13 +31,10 @@ const update = function() {
                     before_array.push(parseInt(choice_id.text()));
                     after_array.push(votes);
                     $("#box"+ choice_data).html('<h1 id="choice'+ choice_data+'">'+ choice_text + '</h1>\<h2 id="votes'+ choice_data+'">'+  votes + '<h2>');
-
                 }
                 let $split = document.getElementsByClassName("choice-box").length;
-
             }
         });
-
 };
 
 let interval;
@@ -55,17 +52,13 @@ const btnstratClick = function(){
             clearInterval(interval);
             clearInterval(updating);
             $("#result").html('<input id="result-button" type="button" value="Result" onclick="resultClick()" />\<p></p>');
-
         }
-
     }, 1000);
-
 };
 const btnstopClick = function(){
         clearInterval(interval);
         clearInterval(updating);
 };
-
 const resultClick = function() {
         $.ajax({
             type: 'GET',
@@ -87,8 +80,6 @@ const resultClick = function() {
                     }
                 }
             }
-
         });
-
 };
 
