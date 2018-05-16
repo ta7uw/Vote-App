@@ -45,9 +45,8 @@ let updating;
 
 const btnstratClick = function(){
     let timer = $('#timer').text();
-    let  update_interval = 500;
+    let update_interval = 500;
     updating = setInterval(update, update_interval);
-
 
     interval = setInterval(function() {
         timer--;
@@ -77,7 +76,7 @@ const resultClick = function() {
                 let  max = 0;
                 let  no1 = "";
                 let  index = 0;
-                for (var choice_data in data) {
+                for (let choice_data in data) {
                     // choice data is the index number of choice
                     let  choice_text = data[choice_data]["choice_text"];
                     let votes = data[choice_data]["votes"];
