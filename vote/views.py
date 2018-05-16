@@ -21,6 +21,7 @@ class VotePage(ListView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
+        """ Login is required to view this page """
         return super(VotePage, self).dispatch(*args, **kwargs)
 
 
@@ -32,6 +33,7 @@ class ThanksPage(TemplateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
+        """ Login is required to view this page """
         return super(ThanksPage, self).dispatch(*args, **kwargs)
 
 
@@ -62,6 +64,7 @@ class ResultsView(DetailView):
     # Staff only
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):
+        """ Login is required to view this page """
         return super(ResultsView, self).dispatch(*args, **kwargs)
 
 
