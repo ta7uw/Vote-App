@@ -1,4 +1,4 @@
-const getRumRgba = function(){
+const getRumRgba = () =>{
         let clr = 'rgba(';
         for(let i=0; i < 3; i++){
             clr = clr + Math.floor( Math.random()*255) + ',';
@@ -14,7 +14,7 @@ $(function(){
     }
 });
 
-const update = function() {
+const update = ()=> {
         $.ajax({
             type: 'GET',
             url: "api_get",
@@ -40,7 +40,7 @@ const update = function() {
 let interval;
 let updating;
 
-const btnstratClick = function(){
+const btnstratClick = ()=>{
     let timer = $('#timer').text();
     let update_interval = 500;
     updating = setInterval(update, update_interval);
@@ -55,11 +55,11 @@ const btnstratClick = function(){
         }
     }, 1000);
 };
-const btnstopClick = function(){
+const btnstopClick = ()=>{
         clearInterval(interval);
         clearInterval(updating);
 };
-const resultClick = function() {
+const resultClick = () => {
         $.ajax({
             type: 'GET',
             url: "api_get",
